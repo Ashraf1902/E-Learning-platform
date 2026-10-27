@@ -1249,18 +1249,6 @@
                     <div class="feature-num">04</div>
                     <div>
                         <h3 class="feature-title">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
-                            لوحة متصدرين لكل محاضرة
-                        </h3>
-                        <p class="feature-text">لكل محاضرة لوحة مستقلة تُرتّب الطلاب حسب نتائجهم. المنافسة هنا على الفهم، لا على عدد مرات المشاهدة.</p>
-                    </div>
-                    <div class="feature-tags"><span class="tag">ترتيب مباشر</span><span class="tag">لكل محاضرة</span></div>
-                </article>
-
-                <article class="feature reveal">
-                    <div class="feature-num">05</div>
-                    <div>
-                        <h3 class="feature-title">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>
                             اشتراك يُراجَع قبل التفعيل
                         </h3>
