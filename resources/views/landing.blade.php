@@ -460,30 +460,6 @@
             .hero-facts { gap: 8px 16px; }
         }
 
-        /* ── Stats ──────────────────────────────────────── */
-        .stats { border-block: 1px solid var(--line); background: var(--paper-2); }
-        .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
-        .stat { padding: 30px 26px; position: relative; }
-        .stat + .stat { border-inline-start: 1px solid var(--line); }
-        .stat-num {
-            font-family: var(--font-mono); font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 500; line-height: 1.2; color: var(--ink); font-variant-numeric: tabular-nums;
-            display: flex; align-items: baseline; gap: 4px;
-        }
-        .stat-num::after { content: ""; width: 18px; height: 1px; background: var(--gold); margin-inline-start: 6px; }
-        .stat-label { margin-top: 8px; font-size: .8rem; color: var(--ink-faint); }
-        .stats-note {
-            display: flex; justify-content: space-between; gap: 16px; padding-block: 14px;
-            border-top: 1px solid var(--line); font-family: var(--font-mono);
-            font-size: .6875rem; letter-spacing: .12em; color: var(--ink-faint); text-transform: uppercase;
-        }
-        @media (max-width: 760px) {
-            .stats-inner { grid-template-columns: repeat(2, 1fr); }
-            .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--line); }
-            .stat:nth-child(3) { border-inline-start: 0; }
-            .stats-note span:last-child { display: none; }
-        }
-
         /* ── Story (pinned chapters) ────────────────────── */
         .story { position: relative; background: var(--lapis); color: var(--on-dark); }
         /* Static stacked chapters by default. JS adds .is-live to enable the
@@ -1160,33 +1136,6 @@
         </div>
     </section>
 
-    <section class="stats" aria-label="أرقام المنصة">
-        <div class="wrap">
-            <div class="stats-inner">
-                <div class="stat">
-                    <div class="stat-num" data-count="{{ $stats['lectures'] }}">{{ number_format($stats['lectures']) }}</div>
-                    <div class="stat-label">محاضرة منشورة</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-count="{{ $stats['students'] }}">{{ number_format($stats['students']) }}</div>
-                    <div class="stat-label">طالب مسجّل</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-count="{{ $stats['quizzes'] }}">{{ number_format($stats['quizzes']) }}</div>
-                    <div class="stat-label">اختبار متاح</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-count="{{ $stats['subjects'] }}">{{ number_format($stats['subjects']) }}</div>
-                    <div class="stat-label">مسار دراسي</div>
-                </div>
-            </div>
-            <div class="stats-note">
-                <span>أرقام حقيقية من قاعدة البيانات</span>
-                <span>محدّثة لحظة الزيارة</span>
-            </div>
-        </div>
-    </section>
-
     <section class="story" id="story" aria-label="رحلة داخل المنصة">
         <div class="story-track" id="storyTrack">
             <div class="story-sticky">
@@ -1748,33 +1697,6 @@
             });
         }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         reveals.forEach(function (el) { io.observe(el); });
-    }
-
-    var counters = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
-    if (counters.length && 'IntersectionObserver' in window && !reduceMotion) {
-        var animate = function (el) {
-            var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-            if (target <= 0) return;
-            var start = null;
-            var duration = 900;
-            function frame(now) {
-                if (!start) start = now;
-                var p = Math.min(1, (now - start) / duration);
-                var eased = 1 - Math.pow(1 - p, 3);
-                el.textContent = Math.round(target * eased).toLocaleString('en-US');
-                if (p < 1) requestAnimationFrame(frame);
-            }
-            requestAnimationFrame(frame);
-        };
-        var cio = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    animate(entry.target);
-                    cio.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(function (el) { cio.observe(el); });
     }
 
     var mapIntro = document.getElementById('mapIntro');
