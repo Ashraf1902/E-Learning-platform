@@ -1,0 +1,57 @@
+<?php
+
+return [
+    'title'        => 'Notifications',
+    'aria_unread'  => 'Notifications — :count unread',
+    'unread_count' => ':count new',
+    'empty_title'  => 'Nothing new yet',
+    'empty_body'   => 'New activity on the platform will appear here.',
+    'window'       => 'Last 30 days',
+    'currency'     => 'EGP',
+    'seen_status'  => 'Notifications marked as read',
+    'page_subtitle' => 'The latest platform activity from the last 30 days.',
+    'mark_all'     => 'Mark all read',
+    'view_all'     => 'View all notifications',
+    'filters'      => 'Filter notifications',
+    'filter_all'   => 'All',
+    'filter_unread' => 'Unread',
+    'showing'      => 'Showing :count',
+    'empty_unread_title' => 'You are all caught up',
+    'empty_unread_body'  => 'New notifications will appear here.',
+
+    'levels' => [
+        'first'   => 'First secondary',
+        'second'  => 'Second secondary',
+        'third'   => 'Third secondary',
+        'all'     => 'All levels',
+        'unknown' => 'No level',
+    ],
+
+    'admin' => [
+        'new_student'        => 'New student',
+        'new_student_body'   => ':name joined — :level',
+        'payment_pending'    => 'Payment awaiting review',
+        'payment_body'       => ':amount — :student',
+        'code_used'          => 'Lecture code redeemed',
+        'code_body'          => ':student used :code',
+        'attempt_submitted'  => 'Quiz submitted',
+        'attempt_pending'    => 'Quiz awaiting grading',
+        'attempt_body'       => ':student — :quiz (:score%)',
+        'lecture_published'  => 'Lecture published',
+        'lecture_body'       => ':title — :level',
+    ],
+
+    'student' => [
+        'new_lecture'        => 'New lecture available',
+        'new_lecture_body'   => ':title',
+        'new_quiz'           => 'New quiz',
+        'new_quiz_body'      => ':title — :lecture',
+        'graded'             => 'Your quiz was graded',
+        'graded_body'        => ':quiz — :score%',
+        'payment_paid'        => 'Your subscription is active',
+        'payment_rejected'    => 'Your payment was rejected',
+        'payment_body'        => ':amount',
+        'new_material'        => 'New file',
+        'new_material_body'   => ':title — :lecture',
+    ],
+];

@@ -1,0 +1,57 @@
+<?php
+
+return [
+    'title'        => 'الإشعارات',
+    'aria_unread'  => 'الإشعارات — :count غير مقروء',
+    'unread_count' => ':count جديد',
+    'empty_title'  => 'لا توجد إشعارات بعد',
+    'empty_body'   => 'ستظهر هنا آخر المستجدات على المنصة.',
+    'window'       => 'آخر 30 يومًا',
+    'currency'     => 'ج.م',
+    'seen_status'  => 'تم تحديد الإشعارات كمقروءة',
+    'page_subtitle' => 'آخر المستجدات على المنصة خلال آخر 30 يومًا.',
+    'mark_all'     => 'قراءة الكل',
+    'view_all'     => 'عرض كل الإشعارات',
+    'filters'      => 'تصفية الإشعارات',
+    'filter_all'   => 'الكل',
+    'filter_unread' => 'غير المقروء',
+    'showing'      => 'عرض :count',
+    'empty_unread_title' => 'لا توجد إشعارات غير مقروءة',
+    'empty_unread_body'  => 'ستظهر الإشعارات الجديدة هنا.',
+
+    'levels' => [
+        'first'   => 'الصف الأول الثانوي',
+        'second'  => 'الصف الثاني الثانوي',
+        'third'   => 'الصف الثالث الثانوي',
+        'all'     => 'كل الصفوف',
+        'unknown' => 'بدون صف',
+    ],
+
+    'admin' => [
+        'new_student'        => 'طالب جديد',
+        'new_student_body'   => 'انضم :name — :level',
+        'payment_pending'    => 'دفعة بانتظار المراجعة',
+        'payment_body'       => ':amount — :student',
+        'code_used'          => 'فتح محاضرات بكود',
+        'code_body'          => ':student استخدم الكود :code',
+        'attempt_submitted'  => 'تسليم اختبار',
+        'attempt_pending'    => 'اختبار بانتظار التصحيح',
+        'attempt_body'       => ':student — :quiz (:score%)',
+        'lecture_published'  => 'محاضرة منشورة',
+        'lecture_body'       => ':title — :level',
+    ],
+
+    'student' => [
+        'new_lecture'        => 'محاضرة جديدة متاحة',
+        'new_lecture_body'   => ':title',
+        'new_quiz'           => 'اختبار جديد',
+        'new_quiz_body'      => ':title — :lecture',
+        'graded'             => 'تم تصحيح اختبارك',
+        'graded_body'        => ':quiz — :score%',
+        'payment_paid'        => 'تم تفعيل اشتراكك',
+        'payment_rejected'    => 'تم رفض دفعتك',
+        'payment_body'        => ':amount',
+        'new_material'        => 'ملف جديد',
+        'new_material_body'   => ':title — :lecture',
+    ],
+];

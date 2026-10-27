@@ -1,0 +1,82 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
+
+class NewPasswordController extends Controller
+{
+    /**
+     * Display the password reset view.
+     */
+    public function create(Request $request): View
+    {
+        return view('auth.reset-password', ['request' => $request]);
+    }
+
+    /**
+     * Handle an incoming new password request.
+     *
+     * @throws ValidationException
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'token' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'token.required' => 'رابط إعادة التعيين غير صالح.',
+            'email.required' => 'أدخل البريد الإلكتروني.',
+            'email.email' => 'أدخل بريداً إلكترونياً صحيحاً.',
+            'password.required' => 'أدخل كلمة المرور الجديدة.',
+            'password.confirmed' => 'كلمتا المرور غير متطابقتين.',
+            'password.min' => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل.',
+            'password.letters' => 'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل.',
+            'password.numbers' => 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.',
+            'password.uncompromised' => 'كلمة المرور هذه ظهرت في تسريبات بيانات. اختر كلمة مرور أخرى.',
+        ]);
+
+        // Here we will attempt to reset the user's password. If it is successful we
+        // will update the password on an actual user model and persist it to the
+        // database. Otherwise we will parse the error and return the response.
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user) use ($request) {
+                $user->forceFill([
+                    'password' => Hash::make($request->password),
+                    'remember_token' => Str::random(60),
+                ])->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        // If the password was successfully reset, we will redirect the user back to
+        // the application's home authenticated view. If there is an error we can
+        // redirect them back to where they came from with their error message.
+        if ($status === Password::PASSWORD_RESET) {
+            return redirect()->route('login')
+                ->with('status', 'تم تعيين كلمة المرور. سجّل دخولك بكلمة المرور الجديدة.');
+        }
+
+        $message = match ($status) {
+            Password::INVALID_TOKEN => 'رابط إعادة التعيين غير صالح أو منتهي الصلاحية. اطلب رابطاً جديداً.',
+            Password::INVALID_USER => 'لا يوجد حساب مسجّل بهذا البريد الإلكتروني.',
+            default => 'تعذّر تعيين كلمة المرور. حاول مرة أخرى.',
+        };
+
+        return back()->withInput($request->only('email'))
+            ->withErrors(['email' => $message]);
+    }
+}
