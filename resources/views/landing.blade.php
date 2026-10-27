@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مستر عبدالرحمن الحبال — منصة التعلم الإلكتروني</title>
-    <meta name="description" content="منصة مستر عبدالرحمن الحبال: محاضرات مسجّلة، اختبارات فورية، ولوحة متصدرين لكل محاضرة. تعلّم البكالوريا والصف الثالث الإعدادي في منصة واحدة.">
+    <meta name="description" content="منصة مستر عبدالرحمن الحبال: محاضرات مسجّلة، اختبارات فورية، ومتابعة دقيقة لتقدّمك. تعلّم البكالوريا والصف الثالث الإعدادي في منصة واحدة.">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1047,7 +1047,7 @@
                     <span class="eyebrow">منصة تعليمية · البكالوريا والإعدادية</span>
                     <h1>تعلّم المنهج <em>بالفهم</em>، لا بالحفظ.</h1>
                     <p class="hero-lead">
-                        محاضرات مسجّلة، اختبارات تُصحَّح في اللحظة، ولوحة متصدرين لكل محاضرة.
+                        محاضرات مسجّلة، اختبارات تُصحَّح في اللحظة، ومتابعة دقيقة لتقدّمك.
                         كل ما تحتاجه للمراجعة والتفوّق في مكان واحد، مرتّب خطوة بخطوة.
                     </p>
                     <div class="hero-actions">
@@ -1067,8 +1067,8 @@
                             تصحيح فوري
                         </span>
                         <span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
-                            لوحة متصدرين
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+                            متابعة التقدّم
                         </span>
                     </div>
                 </div>
@@ -1174,8 +1174,8 @@
                             <div class="story-copy">
                                 <div class="story-chapter">الفصل الثالث</div>
                                 <span class="story-verb">تابع</span>
-                                <h3>تقدّمك واضح، وترتيبك بين زملائك كذلك.</h3>
-                                <p>تابع درجاتك ونسبة إنجازك في كل محاضرة، وشاهد موقعك على لوحة المتصدرين الخاصة بمحاضرتك.</p>
+                                <h3>تقدّمك واضح، خطوة بخطوة.</h3>
+                                <p>تابع درجاتك ونسبة إنجازك في كل محاضرة، واعرف ما أنجزته وما يحتاج إلى مراجعة.</p>
                             </div>
                             <figure class="story-media">
                                 <img src="{{ asset('images/hero-3.webp') }}" alt="مستر عبدالرحمن الحبال — متابعة" loading="lazy">
@@ -1440,14 +1440,6 @@
 
                 <details class="faq-item reveal">
                     <summary>
-                        <span>هل توجد لوحة متصدرين؟</span>
-                        <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-                    </summary>
-                    <div class="faq-answer">نعم. كل محاضرة لها لوحة متصدرين مستقلة تُرتّب الطلاب حسب نتائجهم، ويمكن للمدرس التحكم في إظهارها وعدد المراكز المعروضة.</div>
-                </details>
-
-                <details class="faq-item reveal">
-                    <summary>
                         <span>كيف أفتح محاضرة إضافية؟</span>
                         <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
                     </summary>
@@ -1490,7 +1482,7 @@
                         <small>El-Molhem Platform</small>
                     </span>
                 </a>
-                <p>منصة تعليمية تجمع المحاضرات المسجّلة، الاختبارات التفاعلية، ولوحة المتصدرين، لطلاّب البكالوريا والصف الثالث الإعدادي.</p>
+                <p>منصة تعليمية تجمع المحاضرات المسجّلة، الاختبارات التفاعلية، ومتابعة التقدّم، لطلاّب البكالوريا والصف الثالث الإعدادي.</p>
             </div>
 
             <div class="footer-col">

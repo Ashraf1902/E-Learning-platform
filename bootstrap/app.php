@@ -37,6 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Scoped to the 'web' group — SetLocale reads from session so must run after StartSession
         $middleware->web(append: [
             \App\Http\Middleware\SetLocale::class,
+            \App\Http\Middleware\SecurityHeaders::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

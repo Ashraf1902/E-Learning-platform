@@ -110,6 +110,17 @@ The notification bell and the `/notifications` page poll for updates. They pause
 while the tab is hidden, refresh when it becomes visible again, and ignore stale
 responses.
 
+## Testing
+
+Run the starter test suite with:
+
+```bash
+composer test
+```
+
+Feature tests use SQLite in-memory (`phpunit.xml`) and refresh the schema for each
+test, so they do not touch the local development database.
+
 ## Deployment Notes
 
 1. Create the production database and import the schema with the project
