@@ -33,6 +33,9 @@ Thumbs.db
 /deploy-tasks.php
 /clear-views.php
 /check_maint_route.php
+/_deploy_*.php
+/_check_*.php
+/phpinfo.php
 
 # Unreferenced local test media
 /public/test-sample.mp4
