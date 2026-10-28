@@ -132,7 +132,18 @@
         .form-section::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
         .form-grid { display: grid; gap: 18px; }
-        @media (min-width: 620px) { .form-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .form-grid-2 { grid-template-columns: 1fr; }
+        @media (min-width: 620px) {
+            .form-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 480px) {
+            .auth-panel { padding: 32px 18px 48px; }
+            .field input { padding: 12px 42px; }
+            .field-icon { inset-inline-start: 12px; }
+            .field-toggle { inset-inline-end: 6px; }
+            .btn-submit { width: 100%; justify-content: center; }
+        }
 
         .form-group { display: grid; gap: 7px; }
         .form-group label, .form-group .label { font-size: .84rem; font-weight: 700; color: var(--muted2); }
