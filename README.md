@@ -68,8 +68,9 @@ same email). Without them it uses an existing admin and skips demo content when
 none exists. Demo students receive `DEMO_PASSWORD` when set, otherwise a random
 password printed once by the seeder.
 
-The demo accounts and sample lectures/quizzes are for local use only.
-Do **not** run the seeder on a production database.
+The demo accounts and sample lectures/quizzes are for local use only. The
+seeder refuses to run when `APP_ENV=production`; create production admin
+accounts manually with a strong, unique password.
 
 Install frontend dependencies and build assets:
 

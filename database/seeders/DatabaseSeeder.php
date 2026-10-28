@@ -14,6 +14,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        if (app()->environment('production')) {
+            $this->command?->warn('The demo seeder is disabled in production.');
+
+            return;
+        }
+
         $admin = $this->seedAdmin();
 
         if (! $admin) {

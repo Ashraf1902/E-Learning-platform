@@ -35,6 +35,17 @@ class DatabaseSeederTest extends TestCase
         $this->assertDatabaseCount('users', 0);
     }
 
+    public function test_seeder_is_disabled_in_production(): void
+    {
+        $this->app['env'] = 'production';
+        $this->setSeederEnv('ADMIN_EMAIL', 'owner@example.com');
+        $this->setSeederEnv('ADMIN_PASSWORD', 'StrongAdminPass123');
+
+        app(DatabaseSeeder::class)->run();
+
+        $this->assertDatabaseCount('users', 0);
+    }
+
     public function test_seeder_creates_admin_from_environment_and_uses_demo_password(): void
     {
         $this->setSeederEnv('ADMIN_EMAIL', 'owner@example.com');
