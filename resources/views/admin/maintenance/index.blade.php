@@ -74,4 +74,14 @@
         @endif
     </div>
 </div>
+
+<div class="card" style="margin-top:20px">
+    <div class="card-title" style="margin-bottom:12px"><x-icon name="download" /> {{ $isAr ? 'نسخة احتياطية من قاعدة البيانات' : 'Database Backup' }}</div>
+    <p style="color:var(--muted);line-height:1.9;font-size:0.88rem;margin-bottom:16px">
+        {{ $isAr ? 'نزّل نسخة SQL مضغوطة من قاعدة البيانات الحالية. قد يستغرق الإنشاء بعض الوقت حسب حجم البيانات.' : 'Download a compressed SQL copy of the current database. Generation may take a moment depending on data size.' }}
+    </p>
+    <a href="{{ route('admin.backups.database') }}" class="btn btn-primary">
+        <x-icon name="download" /> {{ $isAr ? 'تنزيل النسخة الاحتياطية' : 'Download backup' }}
+    </a>
+</div>
 @endsection

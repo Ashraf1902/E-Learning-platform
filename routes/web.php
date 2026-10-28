@@ -13,10 +13,13 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\MaintenanceController;
+use App\Http\Controllers\Admin\DatabaseBackupController;
+use App\Http\Controllers\Admin\AdminActivityController;
 use App\Http\Controllers\Admin\AccessCodeController as AdminAccessCodeController;
 use App\Http\Controllers\Portal\AccessCodeController as PortalAccessCodeController;
 
 use App\Http\Controllers\Auth\RegisteredStudentController;
+use App\Http\Middleware\LogAdminActivity;
 
 // Language switch
 Route::get('/lang/{lang}', [LanguageController::class, 'switch'])->name('lang.switch');
@@ -34,7 +37,7 @@ Route::get('/login-redirect', function () {
 // =====================
 // ADMIN ROUTES
 // =====================
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin', LogAdminActivity::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('lectures', LectureController::class);
     Route::resource('students', StudentController::class);
@@ -69,6 +72,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/maintenance',      [MaintenanceController::class, 'index'])->name('admin.maintenance.index');
     Route::post('/maintenance/down', [MaintenanceController::class, 'down'])->name('admin.maintenance.down');
     Route::post('/maintenance/up',   [MaintenanceController::class, 'up'])->name('admin.maintenance.up');
+
+    // ── Backups & audit log ──
+    Route::get('/backups/database', [DatabaseBackupController::class, 'download'])->name('admin.backups.database');
+    Route::get('/activity-log',      [AdminActivityController::class, 'index'])->name('admin.activity.index');
 });
 
 // =====================
@@ -144,4 +151,4 @@ require __DIR__.'/auth.php';
 // method+URI — defining these here guarantees ours wins, not Breeze's
 // default RegisteredUserController.
 Route::get('/register', [RegisteredStudentController::class, 'create'])->name('register');
-Route::post('/register', [RegisteredStudentController::class, 'store']);
+Route::post('/register', [RegisteredStudentController::class, 'store'])->middleware('throttle:10,1');

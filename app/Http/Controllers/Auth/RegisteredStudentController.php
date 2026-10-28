@@ -9,20 +9,27 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredStudentController extends Controller
 {
+    private const CAPTCHA_SESSION_KEY = 'registration_captcha_answer';
+
     public function create()
     {
         if (!session()->has('errors') && !session()->hasOldInput()) {
             $this->forceCleanSession();
         }
 
-        return view('auth.register');
+        return view('auth.register', $this->newCaptcha());
     }
 
     public function store(Request $request)
     {
+        // The session is deliberately flushed below, so keep the expected
+        // answer in memory before the captcha check.
+        $expectedCaptcha = session()->get(self::CAPTCHA_SESSION_KEY);
+
         $this->forceCleanSession();
 
         $request->validate([
@@ -34,6 +41,8 @@ class RegisteredStudentController extends Controller
             'level'        => 'required|in:first,second,third',
             'access_code'  => 'nullable|string|max:32',
             'password'     => 'required|string|min:8|confirmed',
+            'captcha'      => 'required|integer',
+            'website_url'  => 'nullable|size:0',
         ], [
             'name.required'         => 'الاسم الكامل مطلوب.',
             'email.required'        => 'البريد الإلكتروني مطلوب.',
@@ -47,7 +56,16 @@ class RegisteredStudentController extends Controller
             'password.required'     => 'كلمة المرور مطلوبة.',
             'password.min'          => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل.',
             'password.confirmed'    => 'تأكيد كلمة المرور غير متطابق.',
+            'captcha.required'      => 'أجب عن سؤال التحقق.',
+            'captcha.integer'       => 'إجابة سؤال التحقق غير صحيحة.',
+            'website_url.size'      => 'تم رفض الطلب.',
         ]);
+
+        if ($expectedCaptcha === null || !hash_equals((string) $expectedCaptcha, (string) $request->integer('captcha'))) {
+            throw ValidationException::withMessages([
+                'captcha' => 'إجابة سؤال التحقق غير صحيحة. حاول مرة أخرى.',
+            ]);
+        }
 
         // Optional invite code: when provided it must be a valid,
         // active registration code with uses remaining.
@@ -110,6 +128,22 @@ class RegisteredStudentController extends Controller
         return redirect('/login')
             ->with('status', 'تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.')
             ->withCookie(cookie()->forget(config('session.cookie')));
+    }
+
+    /**
+     * Build a lightweight, self-hosted human check for open registration.
+     * The answer stays in the session; the form only receives the question.
+     */
+    private function newCaptcha(): array
+    {
+        $left = random_int(2, 9);
+        $right = random_int(2, 9);
+
+        session()->put(self::CAPTCHA_SESSION_KEY, $left + $right);
+
+        return [
+            'captchaQuestion' => 'كم يساوي ' . $left . ' + ' . $right . '؟',
+        ];
     }
 
     /**

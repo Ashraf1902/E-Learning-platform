@@ -110,6 +110,37 @@ The notification bell and the `/notifications` page poll for updates. They pause
 while the tab is hidden, refresh when it becomes visible again, and ignore stale
 responses.
 
+## Mail and Password Resets
+
+The application uses Laravel's password-reset flow. To deliver reset emails in
+production, configure a real SMTP relay in the server `.env`:
+
+```dotenv
+MAIL_MAILER=smtp
+MAIL_SCHEME=tls
+MAIL_HOST=smtp.example.com
+MAIL_PORT=587
+MAIL_USERNAME=your-smtp-username
+MAIL_PASSWORD=your-smtp-app-password
+MAIL_FROM_ADDRESS="no-reply@your-domain.example"
+MAIL_FROM_NAME="El-Molhem"
+```
+
+Use an app-specific password where the provider supports it, and never commit the
+server `.env`. With `MAIL_MAILER=log`, reset links are written to the application
+log instead of being delivered.
+
+## Backups and Admin Activity
+
+Admins can download a gzipped SQL backup from **Maintenance → Database Backup**.
+The backup is generated from the active database connection and removed from
+temporary storage after the download. For a second copy, download the file
+regularly and keep it off the hosting account.
+
+The **Activity Log** page records admin write actions (`POST`, `PUT`, `PATCH`,
+`DELETE`) with the acting user, route, status, IP, and timestamp. Database backup
+downloads are recorded there as well.
+
 ## Testing
 
 Run the starter test suite with:

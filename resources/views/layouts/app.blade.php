@@ -51,6 +51,9 @@
             <span class="icon"><x-icon name="key" /></span> {{ app()->getLocale() === 'ar' ? 'أكواد الدخول' : 'Access Codes' }}
         </a>
         <div class="nav-section">{{ app()->getLocale() === 'ar' ? 'النظام' : 'System' }}</div>
+        <a href="{{ route('admin.activity.index') }}" class="nav-link {{ request()->routeIs('admin.activity*') ? 'active' : '' }}" @if(request()->routeIs('admin.activity*')) aria-current="page" @endif>
+            <span class="icon"><x-icon name="shield" /></span> {{ app()->getLocale() === 'ar' ? 'سجل النشاط' : 'Activity Log' }}
+        </a>
         <a href="{{ route('admin.maintenance.index') }}" class="nav-link {{ request()->routeIs('admin.maintenance*') ? 'active' : '' }}" @if(request()->routeIs('admin.maintenance*')) aria-current="page" @endif>
             <span class="icon"><x-icon name="wrench" /></span> {{ app()->getLocale() === 'ar' ? 'وضع الصيانة' : 'Maintenance' }}
         </a>

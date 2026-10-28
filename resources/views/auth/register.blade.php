@@ -138,6 +138,15 @@
         .form-group label, .form-group .label { font-size: .84rem; font-weight: 700; color: var(--muted2); }
         .label-note { font-weight: 500; color: var(--muted); }
 
+        .hp-field {
+            position: absolute !important;
+            left: -9999px !important;
+            width: 1px; height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .field { position: relative; }
         .field-icon {
             position: absolute; top: 50%; inset-inline-start: 15px;
@@ -344,6 +353,10 @@
 
             <form class="auth-form" method="POST" action="{{ route('register') }}">
                 @csrf
+                <div class="hp-field" aria-hidden="true">
+                    <label for="website_url">Website</label>
+                    <input id="website_url" type="text" name="website_url" tabindex="-1" autocomplete="off">
+                </div>
 
                 <div class="form-section">بياناتك</div>
 
@@ -481,6 +494,18 @@
                         </div>
                         <p class="hint hint-error" data-pw-match aria-live="polite"></p>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="captcha">سؤال التحقق: {{ $captchaQuestion }}</label>
+                    <div class="field">
+                        <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.9 7.5 9 4.3-1.1 7.5-4.5 7.5-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+                        <input id="captcha" type="number" name="captcha" inputmode="numeric" min="0" max="99"
+                               placeholder="الإجابة" required autocomplete="off" dir="ltr"
+                               @error('captcha') aria-invalid="true" aria-describedby="captcha-error" @enderror>
+                    </div>
+                    @error('captcha') <p class="field-error" id="captcha-error">{{ $message }}</p> @enderror
+                    <p class="hint">أجب عن العملية الحسابية للتأكد من أنك لست روبوتاً.</p>
                 </div>
 
                 <button class="btn-submit" type="submit">
