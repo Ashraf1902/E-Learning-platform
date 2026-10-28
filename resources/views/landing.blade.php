@@ -1001,7 +1001,6 @@
             <span class="brand-mark"><img src="{{ asset('images/logo.png') }}" alt=""></span>
             <span class="brand-text">
                 مستر عبدالرحمن <span>الحبال</span>
-                <small>El-Molhem Platform</small>
             </span>
         </a>
 
@@ -1125,7 +1124,7 @@
                             @endif
                         </figcaption>
                     </figure>
-                    <span class="artifact-side">EL-MOLHEM PLATFORM</span>
+
                 </div>
             </div>
 
@@ -1464,7 +1463,7 @@
                         <a href="{{ route('login') }}" class="btn btn-light">تسجيل الدخول</a>
                     </div>
                 </div>
-                <span class="cta-mark">El-Molhem Platform</span>
+
             </div>
         </div>
     </section>
@@ -1479,7 +1478,7 @@
                     <span class="brand-mark"><img src="{{ asset('images/logo.png') }}" alt=""></span>
                     <span class="brand-text">
                         مستر عبدالرحمن <span>الحبال</span>
-                        <small>El-Molhem Platform</small>
+
                     </span>
                 </a>
                 <p>منصة تعليمية تجمع المحاضرات المسجّلة، الاختبارات التفاعلية، ومتابعة التقدّم، لطلاّب البكالوريا والصف الثالث الإعدادي.</p>

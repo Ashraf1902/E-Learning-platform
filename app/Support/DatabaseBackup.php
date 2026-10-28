@@ -33,7 +33,7 @@ class DatabaseBackup
         $pdo = DB::connection()->getPdo();
         $database = DB::connection()->getDatabaseName();
 
-        $this->write($handle, "-- El-Molhem database backup\n");
+        $this->write($handle, "-- Database backup\n");
         $this->write($handle, '-- Database: ' . $database . "\n");
         $this->write($handle, '-- Generated: ' . date('c') . "\n\n");
         $this->write($handle, "SET NAMES utf8mb4;\n");

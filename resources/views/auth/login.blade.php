@@ -359,7 +359,7 @@
         <div class="visual-inner">
             <a class="visual-brand" href="{{ route('landing') }}" tabindex="-1">
                 <span class="brand-mark"><img src="{{ asset('images/logo.png') }}" alt=""></span>
-                <span>مستر عبدالرحمن <span>الحبال</span><small>El-Molhem Platform</small></span>
+                <span>مستر عبدالرحمن <span>الحبال</span></span>
             </a>
 
             <div class="visual-copy">
