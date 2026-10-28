@@ -61,6 +61,9 @@
         <a href="{{ route('portal.subscription') }}" class="nav-link {{ request()->routeIs('portal.subscription*') ? 'active' : '' }}" @if(request()->routeIs('portal.subscription*')) aria-current="page" @endif>
             <span class="icon"><x-icon name="card" /></span> {{ app()->getLocale() === 'ar' ? 'الاشتراك' : 'Subscription' }}
         </a>
+        <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}" @if(request()->routeIs('profile.*')) aria-current="page" @endif>
+            <span class="icon"><x-icon name="user" /></span> {{ app()->getLocale() === 'ar' ? 'الملف الشخصي' : 'My Profile' }}
+        </a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-name">{{ auth()->user()->name }}</div>
@@ -93,10 +96,10 @@
                 $__avatarColor = $__avatarColors[auth()->id() % count($__avatarColors)];
                 $__avatarLetter = strtoupper(mb_substr(auth()->user()->name, 0, 1));
             @endphp
-            <div class="user-chip">
+            <a href="{{ route('profile.edit') }}" class="user-chip" style="text-decoration:none" aria-label="{{ app()->getLocale() === 'ar' ? 'الملف الشخصي' : 'My Profile' }}">
                 <div class="avatar" style="background:{{ $__avatarColor }}">{{ $__avatarLetter }}</div>
                 <span class="name">{{ auth()->user()->name }}</span>
-            </div>
+            </a>
         </div>
     </div>
     <div class="page-body">

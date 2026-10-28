@@ -10,6 +10,7 @@ use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\StudentPortalController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\MaintenanceController;
@@ -106,6 +107,11 @@ Route::middleware(['auth', 'student'])->prefix('portal')->name('portal.')->group
         Route::get('/leaderboard',                       [LeaderboardController::class, 'index'])->name('leaderboard.index');
         Route::get('/leaderboard/{lecture}',             [LeaderboardController::class, 'show'])->name('leaderboard.show');
     });
+});
+
+// ── Profile (shared by admin + student shells) ──
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 });
 
 // ── Notifications (shared by admin + student shells) ──
