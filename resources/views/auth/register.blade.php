@@ -38,8 +38,8 @@
         }
         [data-theme="dark"] .btn-submit, [data-theme="dark"] .skip-link, [data-theme="dark"] ::selection { color:#07120f; }
 
-        html { scroll-behavior: smooth; }
-        html, body { min-height: 100%; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        html, body { min-height: 100%; overflow-x: hidden; }
         body {
             background: var(--bg); color: var(--text);
             font-family: 'IBM Plex Sans Arabic', sans-serif; line-height: 1.75;
@@ -74,7 +74,7 @@
 
         /* ── Form panel ─────────────────────────────────── */
         .auth-panel {
-            position: relative; padding: 40px 24px 56px;
+            position: relative; padding: 40px 24px 56px; overflow-x: hidden; min-width: 0;
         }
         @media (min-width: 980px) {
             .auth-panel { padding: 64px; display: flex; flex-direction: column; min-height: 100vh; }
@@ -104,7 +104,7 @@
         .mobile-brand span { font-weight: 800; font-size: .98rem; }
         .mobile-brand span span { color: var(--gold); }
 
-        .auth-card { width: 100%; max-width: 620px; margin-inline: auto; }
+        .auth-card { width: 100%; max-width: 620px; margin-inline: auto; min-width: 0; }
 
         .auth-card h1 {
             font-size: clamp(1.85rem, 3.4vw, 2.35rem); font-weight: 800;
@@ -131,9 +131,9 @@
         }
         .form-section::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-        .form-grid { display: grid; gap: 18px; }
-        .form-grid-2 { grid-template-columns: 1fr; }
-        @media (min-width: 620px) {
+        .form-grid { display: grid; gap: 18px; min-width: 0; }
+        .form-grid-2 { grid-template-columns: 1fr; min-width: 0; }
+        @media (min-width: 560px) {
             .form-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
 
@@ -145,7 +145,7 @@
             .btn-submit { width: 100%; justify-content: center; }
         }
 
-        .form-group { display: grid; gap: 7px; }
+        .form-group { display: grid; gap: 7px; min-width: 0; }
         .form-group label, .form-group .label { font-size: .84rem; font-weight: 700; color: var(--muted2); }
         .label-note { font-weight: 500; color: var(--muted); }
 
