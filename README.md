@@ -53,12 +53,23 @@ For SQLite, create the local database and run the migrations:
 
 ```bash
 touch database/database.sqlite
-php artisan migrate --seed
+php artisan migrate
 ```
 
-The seeder creates demo accounts and sample lectures/quizzes for local use only.
-Do **not** run `--seed` on a production database, and change any demo credentials
-before exposing the application.
+To seed demo data, first set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env`, then run:
+
+```bash
+php artisan db:seed
+```
+
+There are no default admin credentials in this repository. If both variables are
+set, the seeder creates that admin account (or reuses the existing one with the
+same email). Without them it uses an existing admin and skips demo content when
+none exists. Demo students receive `DEMO_PASSWORD` when set, otherwise a random
+password printed once by the seeder.
+
+The demo accounts and sample lectures/quizzes are for local use only.
+Do **not** run the seeder on a production database.
 
 Install frontend dependencies and build assets:
 
